@@ -34,7 +34,7 @@ export default function UserMenu() {
         onClick={handleClick}
         className="user h-10 hover:shadow-xl hover:text-red-700 rounded-full gap-2 flex items-center cursor-pointer"
       >
-        <UserCircleIcon className="w-10 h-10 text-red-700" />
+        <UserCircleIcon className="w-8 h-8 text-red-700" />
         <div className="mr-4 pointer-events-none">John Doe</div>
       </div>
       {showMenu && (
