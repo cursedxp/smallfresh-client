@@ -32,23 +32,23 @@ export default function UserMenu() {
     <div className="menu relative ">
       <div
         onClick={handleClick}
-        className="user h-10 bg-slate-200 rounded-full flex items-center cursor-pointer"
+        className="user h-10 hover:shadow-xl hover:text-red-700 rounded-full gap-2 flex items-center cursor-pointer"
       >
         <UserCircleIcon className="w-10 h-10 text-red-700" />
-        <div className="px-3 font-bold pointer-events-none">John Doe</div>
+        <div className="mr-4 pointer-events-none">John Doe</div>
       </div>
       {showMenu && (
         <div className="context-menu z-10 absolute top-10 w-44 right-0 p-4 text-left rounded-2xl bg-white shadow-md">
-          <ul className="text-slate-400">
-            <li className="flex gap-4 rounded-lg p-2 hover:bg-slate-100 hover:text-red-700 hover:font-bold">
+          <ul className="">
+            <li className="flex gap-4 rounded-lg p-2 hover:bg-slate-100 hover:text-red-700 ">
               <QueueListIcon className="w-6 h-6 " />
               Orders
             </li>
-            <li className="mt-4 flex gap-4 rounded-lg p-2 hover:bg-slate-100 hover:text-red-700 hover:font-bold">
+            <li className="mt-4 flex gap-4 rounded-lg p-2 hover:bg-slate-100 hover:text-red-700 ">
               <MapPinIcon className="w-6 h-6" />
               Addresses
             </li>
-            <li className="mt-4 flex gap-4 rounded-lg p-2 hover:bg-slate-100 hover:text-red-700 hover:font-bold">
+            <li className="mt-4 flex gap-4 rounded-lg p-2 hover:bg-slate-100 hover:text-red-700">
               <Cog6ToothIcon className="w-6 h-6 " />
               Settings
             </li>
