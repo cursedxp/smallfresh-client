@@ -11,7 +11,10 @@ export default function YourProducts(props) {
       <div className="grid grid-rows-1 grid-flow-col gap-4">
         {products.map((product) => {
           return (
-            <div className="product-card flex flex-col bg-white p-8 rounded-3xl  shadow-lg">
+            <div
+              key={product._id}
+              className="product-card flex flex-col bg-white p-8 rounded-3xl  shadow-lg"
+            >
               <img
                 src={product.img}
                 className="w-36 mb-8 self-center"
