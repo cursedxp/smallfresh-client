@@ -12,7 +12,6 @@ export default function HomePage() {
       .get("http://localhost:5005/api/products")
       .then((products) => {
         setProducts(products.data);
-        console.log(products);
         generateYourProducts(products.data);
       })
       .catch((err) => {
@@ -34,8 +33,6 @@ export default function HomePage() {
   useEffect(() => {
     getProducts();
   }, []);
-
-  console.log(yourProducts);
 
   return (
     <div className="wrapper mx-auto max-w-screen-2xl">
