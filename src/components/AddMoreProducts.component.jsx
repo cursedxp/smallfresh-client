@@ -1,22 +1,31 @@
 import { useState } from "react";
 import AddCounter from "./AddCounter.component";
-import AddOneButton from "./AddOneButton.component";
+import AddItemButton from "./AddItemButton.component";
 
-export default function AddMoreProducts() {
+export default function ShoppingCart() {
   const [count, setCount] = useState(0);
-  const [showCounter, setShowCounter] = useState(false);
 
-  const handleClick = () => {
-    setCount((prevCount) => {
-      return prevCount + 1;
-    });
-    setShowCounter(true);
+  const handleAddItem = () => {
+    setCount(count + 1);
+  };
+
+  const handleRemoveItem = () => {
+    if (count > 0) {
+      setCount(count - 1);
+    }
   };
 
   return (
     <div>
-      <AddOneButton onClick={handleClick} />
-      {count && <AddCounter />}
+      {count > 0 ? (
+        <AddCounter
+          count={count}
+          onAdd={handleAddItem}
+          onRemove={handleRemoveItem}
+        />
+      ) : (
+        <AddItemButton onClick={handleAddItem} />
+      )}
     </div>
   );
 }
