@@ -13,7 +13,7 @@ export default function YourProducts(props) {
           return (
             <div
               key={product._id}
-              className="product-card flex flex-col bg-white p-8 rounded-3xl  shadow-lg"
+              className="product-card flex flex-col bg-white p-8 rounded-3xl shadow-lg"
             >
               <img
                 src={product.img}
@@ -21,10 +21,10 @@ export default function YourProducts(props) {
                 alt={product.name}
               />
               <div className=" self-start text-xl">{product.name}</div>
-              <div className="description self-start text-sm text-gray-400 mb-8 truncate w-40">
+              <div className="description self-start text-sm text-gray-400 w-40 mb-8 truncate  ">
                 {product.description}
               </div>
-              <div className="self-end text-xl mb-4">
+              <div className="self-end text-xl mb-6">
                 {product.stock.price}
                 <span> €</span>
               </div>
