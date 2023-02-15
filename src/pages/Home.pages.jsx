@@ -1,29 +1,46 @@
 import { useState, useEffect } from "react";
 import SearchBar from "../components/Search.component";
 import axios from "axios";
+import YourProducts from "../components/YourProducts.compopnents";
 
 export default function HomePage() {
   const [products, setProducts] = useState([]);
+  const [yourProducts, setYourProducts] = useState([]);
 
   const getProducts = () => {
     axios
       .get("http://localhost:5005/api/products")
       .then((products) => {
         setProducts(products.data);
+        console.log(products);
+        generateYourProducts(products.data);
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
+  const generateYourProducts = (products) => {
+    const copyProducts = [...products];
+    const randomProductArray = [];
+    for (let index = 0; index < 5; index++) {
+      const randomIndex = Math.floor(Math.random() * copyProducts.length);
+      const randomProduct = copyProducts.splice(randomIndex, 1)[0];
+      randomProductArray.push(randomProduct);
+    }
+    setYourProducts(randomProductArray);
+  };
+
   useEffect(() => {
     getProducts();
   }, []);
 
+  console.log(yourProducts);
+
   return (
     <div className="wrapper mx-auto max-w-screen-2xl">
       <div
-        className="search-container m-4 rounded-3xl flex p-8 pt-12 "
+        className="search-container m-4 rounded-3xl flex flex-col p-8 pt-12 "
         style={{
           height: 400,
           backgroundImage: `url("https://images.unsplash.com/photo-1506365069540-904bcc762636")`,
@@ -44,8 +61,8 @@ export default function HomePage() {
             we'll do the rest!
           </p>
           <SearchBar products={products}></SearchBar>
-          <div></div>
         </div>
+        <YourProducts products={yourProducts}></YourProducts>
       </div>
     </div>
   );
