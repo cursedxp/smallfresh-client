@@ -18,7 +18,7 @@ export default function SearchBar(props) {
   };
 
   return (
-    <div className="rounded-2xl relative bg-white self-start h-14 pl-4 shadow-md">
+    <div className="rounded-2xl relative bg-white self-start h-14 pl-4 shadow-md mb-4">
       <form onSubmit={handleSubmit} className="flex">
         <input
           type="search"
