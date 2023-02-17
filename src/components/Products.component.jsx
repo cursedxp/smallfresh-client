@@ -1,13 +1,10 @@
 import ProductCard from "./ProductCard.component";
 
-export default function YourProducts(props) {
+export default function Products(props) {
   const { products } = props;
   return (
     <div className="w-full bg-center">
-      <h3 className="font-bold text-white text-2xl text-left mb-4">
-        Products for you
-      </h3>
-      <div className="grid grid-rows-1 grid-flow-col gap-4">
+      <div className="grid grid-cols-4 gap-4 gap-y-8">
         {products.map((product) => {
           return <ProductCard product={product} />;
         })}

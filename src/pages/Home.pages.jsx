@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import SearchBar from "../components/Search.component";
 import axios from "axios";
 import YourProducts from "../components/YourProducts.compopnents";
+import Products from "../components/Products.component";
 
 export default function HomePage() {
   const [products, setProducts] = useState([]);
@@ -60,6 +61,11 @@ export default function HomePage() {
           <SearchBar products={products}></SearchBar>
         </div>
         <YourProducts products={yourProducts}></YourProducts>
+      </div>
+      <div className="products mt-96 px-12">
+        <h3 className="font-bold text-2xl text-left mb-4">All Products</h3>
+
+        <Products products={products}></Products>
       </div>
     </div>
   );
