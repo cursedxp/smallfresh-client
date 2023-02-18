@@ -9,7 +9,7 @@ function ShopContextWrapper(props) {
   const [user, setUser] = useState(null);
 
   return (
-    <ShopContext.Provider setBasket={setBasket}>
+    <ShopContext.Provider value={{ setBasket, isLoading, isLoggedIn, user }}>
       {props.children}
     </ShopContext.Provider>
   );
