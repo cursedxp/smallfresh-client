@@ -11,7 +11,9 @@ export default function NavBar() {
 
   return (
     <nav className="navigation w-full p-4 flex justify-between">
-      <NavBranding />
+      <Link to="/">
+        <NavBranding />
+      </Link>
       <div className="nav-context flex gap-6 items-center">
         {isLoggedIn && (
           <>
