@@ -9,7 +9,7 @@ export default function YourProducts(props) {
       </h3>
       <div className="grid grid-rows-1 grid-flow-col gap-4">
         {products.map((product) => {
-          return <ProductCard product={product} />;
+          return <ProductCard key={product._id} product={product} />;
         })}
       </div>
     </div>

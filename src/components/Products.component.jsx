@@ -6,7 +6,7 @@ export default function Products(props) {
     <div className="w-full bg-center">
       <div className="grid grid-cols-4 gap-4 gap-y-8">
         {products.map((product) => {
-          return <ProductCard product={product} />;
+          return <ProductCard key={product._id} product={product} />;
         })}
       </div>
     </div>
