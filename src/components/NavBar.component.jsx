@@ -7,7 +7,7 @@ import { ShopContext } from "../context/shop.context";
 import { Link } from "react-router-dom";
 
 export default function NavBar() {
-  const { isLoggedIn, user } = useContext(ShopContext);
+  const { isLoggedIn, user, logOutUser } = useContext(ShopContext);
 
   return (
     <nav className="navigation w-full p-4 flex justify-between">
