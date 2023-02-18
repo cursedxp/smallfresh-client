@@ -8,6 +8,22 @@ export default function SignUp() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [errorMessage, setErrorMessage] = useState(undefined);
+  const navigate = useNavigate();
+
+  const handleSignupSubmit = (e) => {
+    e.preventDefault();
+    const requestBody = { email, password, firstName, lastName };
+
+    axios
+      .post(`${process.env.REACT_APP_API_URL}/auth/signup`, requestBody)
+      .then((response) => {
+        navigate("/login");
+      })
+      .catch((error) => {
+        const errorDescription = error.response.data.message;
+        setErrorMessage(errorDescription);
+      });
+  };
 
   return (
     <div className="wrapper mx-auto max-w-screen-2xl">
@@ -26,7 +42,7 @@ export default function SignUp() {
           className="flex flex-col bg-white p-8 rounded-3xl shadow-lg"
           style={{ width: "600px" }}
         >
-          <form className="" onSubmit={""}>
+          <form className="" onSubmit={handleSignupSubmit}>
             <div className="mb-4">
               <label className="block font-bold mb-2" htmlFor="first-name">
                 First Name
@@ -79,21 +95,27 @@ export default function SignUp() {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
-            <div className="flex items-center justify-center">
+            <div className="flex justify-between items-center">
+              <div className="flex justify-center">
+                <p>Already have account? </p>
+                <Link to={"/login"} className="text-red-700 font-bold">
+                  &nbsp; Login
+                </Link>
+              </div>
               <button
                 className="bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-6 rounded-xl h-12 focus:outline-none focus:shadow-outline"
-                type="button"
+                type="submit"
               >
                 Register
               </button>
             </div>
           </form>
-          <div className="flex justify-center p-4">
-            <p>Already have account? </p>
-            <Link to={"/login"} className="text-red-700 font-bold">
-              &nbsp; Login
-            </Link>
-          </div>
+
+          {errorMessage && (
+            <div className=" text-center text-red-700 p-4 mt-6 bg-red-200 rounded-xl">
+              <p className="error-message">{errorMessage}</p>
+            </div>
+          )}
         </div>
       </div>
     </div>
