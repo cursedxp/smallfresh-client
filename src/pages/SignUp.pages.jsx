@@ -20,7 +20,8 @@ export default function SignUp() {
           backgroundPosition: "center",
         }}
       ></div>
-      <div className="flex justify-center">
+
+      <div className="flex justify-center ">
         <div
           className="flex flex-col bg-white p-8 rounded-3xl shadow-lg"
           style={{ width: "600px" }}
@@ -80,13 +81,19 @@ export default function SignUp() {
             </div>
             <div className="flex items-center justify-center">
               <button
-                className="bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-4 rounded-xl h-12 focus:outline-none focus:shadow-outline"
+                className="bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-6 rounded-xl h-12 focus:outline-none focus:shadow-outline"
                 type="button"
               >
                 Register
               </button>
             </div>
           </form>
+          <div className="flex justify-center p-4">
+            <p>Already have account? </p>
+            <Link to={"/login"} className="text-red-700 font-bold">
+              &nbsp; Login
+            </Link>
+          </div>
         </div>
       </div>
     </div>
