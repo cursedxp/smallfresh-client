@@ -25,7 +25,7 @@ export default function NavBar() {
         {!isLoggedIn && (
           <>
             <div className="user h-10 hover:text-red-700 rounded-full gap-2 flex items-center">
-              <div className="mr-4 pointer-events-none text-red-700">
+              <div className="mr-4 text-red-700">
                 <Link to="/signup">Sign Up</Link>
                 <span className="mx-2">/</span>
                 <Link to="/login">Login</Link>
