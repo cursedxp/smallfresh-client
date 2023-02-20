@@ -1,5 +1,6 @@
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function SearchBar(props) {
   const { products } = props;
@@ -46,24 +47,32 @@ export default function SearchBar(props) {
         >
           {filtered.length > 0 ? (
             filtered.map((product) => (
-              <div
+              <Link
                 key={product._id}
-                className="p-4 border-b border-b-gray-100 flex gap-4 hover:bg-slate-200 rounded-2xl cursor-pointer"
+                to={{
+                  pathname: `/products/${product._id}`,
+                  state: { product },
+                }}
               >
-                <img src={product.img} className="w-16" alt={product.name} />
-                <div className="flex flex-col w-full">
-                  <div className="flex justify-between text-lg w-ful truncate">
-                    <div>{product.name}</div>
-                    <div>
-                      {product.stock.price}
-                      <span> €</span>
+                <div
+                  key={product._id}
+                  className="p-4 border-b border-b-gray-100 flex gap-4 hover:bg-slate-200 rounded-2xl cursor-pointer"
+                >
+                  <img src={product.img} className="w-16" alt={product.name} />
+                  <div className="flex flex-col w-full">
+                    <div className="flex justify-between text-lg w-ful truncate">
+                      <div>{product.name}</div>
+                      <div>
+                        {product.stock.price}
+                        <span> €</span>
+                      </div>
+                    </div>
+                    <div className="text-sm text-gray-400 ">
+                      <span>{product.description}</span>
                     </div>
                   </div>
-                  <div className="text-sm text-gray-400 ">
-                    <span>{product.description}</span>
-                  </div>
                 </div>
-              </div>
+              </Link>
             ))
           ) : (
             <div className="text-gray-500 text-center flex flex-col justify-center h-full">
