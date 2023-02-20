@@ -11,14 +11,7 @@ export default function YourProducts(props) {
       </h3>
       <div className="grid grid-rows-1 grid-flow-col gap-4">
         {products.map((product) => {
-          return (
-            <Link
-              key={product._id}
-              to={{ pathname: `/products/${product._id}`, state: { product } }}
-            >
-              <ProductCard product={product} />
-            </Link>
-          );
+          return <ProductCard product={product} />;
         })}
       </div>
     </div>

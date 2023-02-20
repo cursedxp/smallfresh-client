@@ -7,14 +7,7 @@ export default function Products(props) {
     <div className="w-full bg-center">
       <div className="grid grid-cols-4 gap-4 gap-y-8">
         {products.map((product) => {
-          return (
-            <Link
-              key={product._id}
-              to={{ pathname: `/products/${product._id}`, state: { product } }}
-            >
-              <ProductCard product={product} />
-            </Link>
-          );
+          return <ProductCard product={product} />;
         })}
       </div>
     </div>
