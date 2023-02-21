@@ -7,12 +7,12 @@ import {
 
 export default function SideMenu() {
   return (
-    <div className="flex p-4 rounded-2xl shadow-xl w-72 m-4">
+    <div className="flex p-4 rounded-2xl bg-gray-200 w-72 m-4">
       <ul className="flex flex-col gap-4 w-full">
         <li>
           <Link
             to="/orders"
-            className="flex gap-4 rounded-lg p-2 hover:text-red-700  hover:bg-slate-100"
+            className="flex gap-4 rounded-lg p-2 hover:text-red-700  hover:bg-gray-100"
           >
             <QueueListIcon className="w-6 h-6" />
             Orders
@@ -21,7 +21,7 @@ export default function SideMenu() {
         <li>
           <Link
             to="/addresses"
-            className="flex gap-4 rounded-lg p-2 hover:text-red-700  hover:bg-slate-100"
+            className="flex gap-4 rounded-lg p-2 hover:text-red-700  hover:bg-gray-100"
           >
             <MapPinIcon className="w-6 h-6" />
             Addresses
@@ -30,7 +30,7 @@ export default function SideMenu() {
         <li>
           <Link
             to="/user/settings"
-            className="flex gap-4 rounded-lg p-2 hover:text-red-700  hover:bg-slate-100"
+            className="flex gap-4 rounded-lg p-2 hover:text-red-700  hover:bg-gray-100"
           >
             <Cog6ToothIcon className="w-6 h-6" />
             Settings
