@@ -7,6 +7,7 @@ import Login from "./pages/Login.pages";
 import ProductDetails from "./pages/ProductDetails.pages";
 import SideMenu from "./components/SideMenu.component";
 import SettingsLayout from "./components/SettingsLayout.component";
+import Addresses from "./pages/Addresses.pages";
 
 export default function App() {
   return (
@@ -19,10 +20,11 @@ export default function App() {
         <Route path="/signup" element={<SignUp />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route
-          path="/settings"
+          path="/addresses"
           element={
             <SettingsLayout>
               <SideMenu />
+              <Addresses />
             </SettingsLayout>
           }
         />
