@@ -1,5 +1,4 @@
 import ProductCard from "./ProductCard.component";
-import { Link } from "react-router-dom";
 
 export default function YourProducts(props) {
   const { products } = props;
