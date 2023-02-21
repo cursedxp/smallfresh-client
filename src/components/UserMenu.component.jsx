@@ -49,7 +49,10 @@ export default function UserMenu(props) {
             <QueueListIcon className="w-6 h-6 " />
             Orders
           </Link>
-          <Link className="mt-4 flex gap-4 rounded-lg p-2 hover:bg-slate-100 hover:text-red-700 ">
+          <Link
+            to="/addresses"
+            className="mt-4 flex gap-4 rounded-lg p-2 hover:bg-slate-100 hover:text-red-700 "
+          >
             <MapPinIcon className="w-6 h-6" />
             Addresses
           </Link>
