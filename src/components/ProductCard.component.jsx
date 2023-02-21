@@ -5,10 +5,7 @@ import { Link } from "react-router-dom";
 export default function ProductCard(props) {
   const { product } = props;
   return (
-    <div
-      key={product._id}
-      className="product-card flex flex-col bg-white p-8 rounded-3xl shadow-lg"
-    >
+    <div className="product-card flex flex-col bg-white p-8 rounded-3xl shadow-lg">
       <Link
         to={{ pathname: `/products/${product._id}`, state: { product } }}
         className="flex flex-col"
