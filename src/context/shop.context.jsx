@@ -72,4 +72,4 @@ function ShopContextWrapper(props) {
   );
 }
 
-export { ShopContext, ShopContextWrapper };
+export { ShopContextWrapper, ShopContext };
