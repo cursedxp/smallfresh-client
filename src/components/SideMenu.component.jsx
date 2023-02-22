@@ -7,7 +7,7 @@ import {
 
 export default function SideMenu() {
   return (
-    <div className="flex p-4 rounded-2xl bg-gray-200 w-72 m-4">
+    <div className="flex p-4 rounded-2xl shadow-md w-72 m-4 h-48">
       <ul className="flex flex-col gap-4 w-full">
         <li>
           <Link
