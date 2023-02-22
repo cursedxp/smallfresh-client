@@ -28,6 +28,14 @@ export default function App() {
             </SettingsLayout>
           }
         />
+        <Route
+          path="/user/settings"
+          element={
+            <SettingsLayout>
+              <SideMenu />
+            </SettingsLayout>
+          }
+        />
       </Routes>
     </div>
   );
