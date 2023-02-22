@@ -8,6 +8,7 @@ import ProductDetails from "./pages/ProductDetails.pages";
 import SideMenu from "./components/SideMenu.component";
 import SettingsLayout from "./components/SettingsLayout.component";
 import Addresses from "./pages/Addresses.pages";
+import Settings from "./pages/Settings.pages";
 
 export default function App() {
   return (
@@ -33,6 +34,7 @@ export default function App() {
           element={
             <SettingsLayout>
               <SideMenu />
+              <Settings />
             </SettingsLayout>
           }
         />
