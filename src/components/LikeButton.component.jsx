@@ -16,11 +16,9 @@ export default function LikeButton(props) {
   const addProduct = () => {
     axios
       .post(
-        `${process.env.REACT_APP_API_URL}/myproducts/${user._id}?productId=${product._id}`
+        `${process.env.REACT_APP_API_URL}/api/myproducts/${user._id}/products/${product._id}`
       )
-      .then((response) => {
-        console.log(response.data);
-      })
+      .then()
       .catch((error) => {
         console.log(error);
       });
@@ -29,11 +27,9 @@ export default function LikeButton(props) {
   const removeProduct = () => {
     axios
       .delete(
-        `${process.env.REACT_APP_API_URL}/myproducts/${user._id}/products/${product._id}`
+        `${process.env.REACT_APP_API_URL}/api/myproducts/${user._id}/products/${product._id}`
       )
-      .then((response) => {
-        console.log(response.data);
-      })
+      .then()
       .catch((error) => {
         console.log(error);
       });
