@@ -18,10 +18,14 @@ export default function NavBar() {
         {isLoggedIn && (
           <>
             <UserMenu />
-            <div className="flex gap-2 items-center hover:shadow-xl h-10 hover:text-red-700 rounded-full px-4 cursor-pointer">
+
+            <Link
+              className="flex gap-2 items-center hover:shadow-xl h-10 hover:text-red-700 rounded-full px-2"
+              to="/myproducts"
+            >
               <HeartIcon className="w-6 h-6 text-red-700 stroke-2" />
               <span>My products</span>
-            </div>
+            </Link>
           </>
         )}
         {!isLoggedIn && (
