@@ -9,6 +9,7 @@ import SideMenu from "./components/SideMenu.component";
 import SettingsLayout from "./components/SettingsLayout.component";
 import Addresses from "./pages/Addresses.pages";
 import Settings from "./pages/Settings.pages";
+import MyProducts from "./pages/MyProducts.pages";
 
 export default function App() {
   return (
@@ -38,6 +39,7 @@ export default function App() {
             </SettingsLayout>
           }
         />
+        <Route path="/myproducts" element={<MyProducts />} />
       </Routes>
     </div>
   );
