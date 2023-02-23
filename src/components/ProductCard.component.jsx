@@ -21,7 +21,7 @@ export default function ProductCard(props) {
         </div>
       </Link>
       <div className="flex justify-between">
-        <LikeButton />
+        <LikeButton product={product} />
         <AddMoreProducts />
       </div>
     </div>
