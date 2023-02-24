@@ -10,6 +10,7 @@ import SettingsLayout from "./components/SettingsLayout.component";
 import Addresses from "./pages/Addresses.pages";
 import Settings from "./pages/Settings.pages";
 import MyProducts from "./pages/MyProducts.pages";
+import Admin from "./pages/Admin.pages";
 
 export default function App() {
   return (
@@ -40,6 +41,7 @@ export default function App() {
           }
         />
         <Route path="/myproducts" element={<MyProducts />} />
+        <Route path="/admin" element={<Admin />} />
       </Routes>
     </div>
   );
