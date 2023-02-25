@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { ShopContext } from "../context/shop.context";
+import AddNewProduct from "../components/AddNewProductModal.component";
 
 export default function Admin() {
   const [products, setProducts] = useState([]);
@@ -70,6 +71,7 @@ export default function Admin() {
           })}
         </tbody>
       </table>
+      <AddNewProduct />
     </div>
   );
 }
