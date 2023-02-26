@@ -3,12 +3,15 @@ import { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { ShopContext } from "../context/shop.context";
 import AddNewProduct from "../components/AddNewProductModal.component";
-import ProductActionButtons from "../components/ProductActionButtons.component";
+import EditProductModal from "../components/EditProductModal.component";
+import { PencilSquareIcon, TrashIcon } from "@heroicons/react/24/solid";
 
 export default function Admin() {
   const [products, setProducts] = useState([]);
   const { isLoggedIn, user, logOutUser } = useContext(ShopContext);
   const [showAddModal, setShowAddModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
   const getProducts = () => {
     axios
@@ -21,15 +24,28 @@ export default function Admin() {
       });
   };
 
+  const handleDelete = (productId) => {
+    axios
+      .delete(`${process.env.REACT_APP_API_URL}/api/products/${productId}`)
+      .then()
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   const addNewProduct = () => {
     setShowAddModal(true);
+  };
+  const editProduct = (product) => {
+    setSelectedProduct(product);
+    setShowEditModal(true);
   };
 
   useEffect(() => {
     if (user) {
       getProducts();
     }
-  });
+  }, [user]);
 
   return (
     <div className=" wrapper mx-auto max-w-screen-2xl">
@@ -76,7 +92,31 @@ export default function Admin() {
                   {product.stock.price} <span> €</span>
                 </td>
                 <td className="border px-4 py-2">
-                  <ProductActionButtons product={product} />
+                  <div className="flex">
+                    <button
+                      className="px-4 flex gap-2 items-center text-red-700"
+                      onClick={(e) => {
+                        editProduct(product);
+                      }}
+                    >
+                      <PencilSquareIcon className="w-6 h-6" /> <span>Edit</span>
+                    </button>
+                    <button
+                      onClick={() => {
+                        handleDelete(product._id);
+                      }}
+                      className="px-4 flex gap-2 items-center text-red-700"
+                    >
+                      <TrashIcon className="w-6 h-6" /> <span>Delete</span>
+                    </button>
+                  </div>
+                  {showEditModal && (
+                    <EditProductModal
+                      product={selectedProduct}
+                      title={selectedProduct.name}
+                      setShowEditModal={setShowEditModal}
+                    />
+                  )}
                 </td>
               </tr>
             );
