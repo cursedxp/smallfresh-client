@@ -2,7 +2,7 @@ import { XMarkIcon } from "@heroicons/react/24/solid";
 import { useState, useEffect } from "react";
 import axios from "axios";
 export default function EditProductModal(props) {
-  const { product } = props;
+  const { product, updateProduct } = props;
   const [img, setImg] = useState(product.img);
   const [name, setName] = useState(product.name);
   const [category, setCategory] = useState(product.category);
@@ -13,6 +13,29 @@ export default function EditProductModal(props) {
   const [unit, setUnit] = useState(product.stock.unit);
   const [price, setPrice] = useState(product.stock.price);
   const [isBio, setIsBio] = useState(product.bio);
+
+  const handleUpdate = (e) => {
+    e.preventDefault();
+    console.log(product?._id);
+
+    const updatedProduct = {
+      name: name,
+      img: img,
+      category: category,
+      brand: brand,
+      description: description,
+      stock: {
+        piece: piece,
+        amount: amount,
+        unit: unit,
+        price: price,
+      },
+      bio: isBio,
+    };
+
+    updateProduct(product?._id, updatedProduct);
+    props.setShowEditModal(false);
+  };
 
   return (
     <div className="absolute top-0 left-0 h-full w-full flex items-center justify-center">
@@ -27,7 +50,7 @@ export default function EditProductModal(props) {
               <XMarkIcon className="w-6 h-6"></XMarkIcon>
             </button>
           </div>
-          <form className="w-full">
+          <form onSubmit={handleUpdate} className="w-full">
             <div className="flex gap-4">
               <label className=" font-bold flex flex-col w-full mb-4">
                 Product Image URL:

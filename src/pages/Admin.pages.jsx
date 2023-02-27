@@ -1,14 +1,13 @@
 import axios from "axios";
 import { useState, useEffect, useContext } from "react";
-import { useParams } from "react-router-dom";
 import { ShopContext } from "../context/shop.context";
 import AddNewProduct from "../components/AddNewProductModal.component";
 import EditProductModal from "../components/EditProductModal.component";
 import { PencilSquareIcon, TrashIcon } from "@heroicons/react/24/solid";
 
 export default function Admin() {
+  const { user } = useContext(ShopContext);
   const [products, setProducts] = useState([]);
-  const { isLoggedIn, user, logOutUser } = useContext(ShopContext);
   const [showAddModal, setShowAddModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -21,6 +20,41 @@ export default function Admin() {
       })
       .catch((err) => {
         console.log(err);
+      });
+  };
+
+  const updateProduct = (productId, updatedProduct) => {
+    if (!productId && updatedProduct) {
+      console.log("Product ID is undefined or Missing Product details");
+      return;
+    }
+
+    axios
+      .put(`${process.env.REACT_APP_API_URL}/api/products/${productId}`, {
+        name: updatedProduct.name,
+        brand: updatedProduct.brand,
+        img: updatedProduct.img,
+        category: updatedProduct.category,
+        description: updatedProduct.updatedProduct,
+        bio: updatedProduct.bio,
+        piece: updatedProduct.stock.piece,
+        amount: updatedProduct.stock.amount,
+        unit: updatedProduct.stock.unit,
+        price: updatedProduct.stock.price,
+      })
+      .then((response) => {
+        const updatedProduct = response.data;
+        const updatedProducts = products.map((product) => {
+          if (product._id === productId) {
+            return updatedProduct;
+          } else {
+            return product;
+          }
+        });
+        setProducts(updatedProducts);
+      })
+      .catch((error) => {
+        console.log(error);
       });
   };
 
@@ -49,7 +83,6 @@ export default function Admin() {
 
   return (
     <div className=" wrapper mx-auto max-w-screen-2xl">
-      <div>Admin page</div>
       <div className="flex justify-between">
         <h3 className="font-bold text-2xl text-left mt-4 mb-4 ">Products</h3>
         <button
@@ -115,6 +148,7 @@ export default function Admin() {
                       product={selectedProduct}
                       title={selectedProduct.name}
                       setShowEditModal={setShowEditModal}
+                      updateProduct={updateProduct}
                     />
                   )}
                 </td>
