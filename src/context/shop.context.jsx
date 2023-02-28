@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 const ShopContext = createContext();
 
 function ShopContextWrapper(props) {
-  const [basket, setBasket] = useState();
+  const [basket, setBasket] = useState(0);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState(null);
@@ -58,6 +58,7 @@ function ShopContextWrapper(props) {
   return (
     <ShopContext.Provider
       value={{
+        basket,
         setBasket,
         isLoading,
         isLoggedIn,
