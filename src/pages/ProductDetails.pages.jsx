@@ -3,8 +3,12 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import LikeButton from "../components/LikeButton.component";
 import AddCounter from "../components/AddCounter.component";
+import { useContext } from "react";
+import { ShopContext } from "../context/shop.context";
 
-export default function ProductDetails() {
+export default function ProductDetails(props) {
+  const { basket } = useContext(ShopContext);
+
   const { productId } = useParams();
   const [product, setProduct] = useState();
 
@@ -13,7 +17,6 @@ export default function ProductDetails() {
       .get(`${process.env.REACT_APP_API_URL}/api/products/${productId}`)
       .then((product) => {
         setProduct(product.data);
-        console.log(product.data);
       })
       .catch((error) => {
         console.log(error);
@@ -25,7 +28,13 @@ export default function ProductDetails() {
   }, []);
 
   if (!product) {
-    return <div>Loading...</div>;
+    return (
+      <div className="mt-6 flex flex-col justify-center w-full items-center">
+        <div className="p-4 bg-gray-200 text-gray-500 text-center w-36 rounded-2xl">
+          <p>Loading...</p>
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -47,7 +56,7 @@ export default function ProductDetails() {
             <div className=" text-gray-400 mb-8">{product.description}</div>
             <div className="flex">
               <LikeButton />
-              <AddCounter className="ml-4" />
+              <AddCounter className="ml-4" count={basket} />
             </div>
           </div>
         </div>
