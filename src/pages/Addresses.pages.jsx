@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState, useEffect, useContext } from "react";
 import { ShopContext } from "../context/shop.context";
+import { XMarkIcon } from "@heroicons/react/24/solid";
 
 export default function Addresses() {
   const { isLoggedIn, user, logOutUser } = useContext(ShopContext);
@@ -114,9 +115,14 @@ export default function Addresses() {
             style={{ backgroundColor: "rgba(0,0,0,0.5)" }}
           >
             <div className="bg-white w-1/2 rounded-2xl p-4">
-              <h3 className="font-bold text-2xl text-left mb-4">
-                Create new address
-              </h3>
+              <div className="flex justify-between">
+                <h3 className="font-bold text-2xl text-left mb-4">
+                  Create new address
+                </h3>
+                <button onClick={() => setShowForm(false)}>
+                  <XMarkIcon className="w-6 h-6"></XMarkIcon>
+                </button>
+              </div>
               <form onSubmit={handleSubmit} className="w-full">
                 <div className="flex gap-4">
                   <label className=" font-bold flex flex-col w-full mb-4">
