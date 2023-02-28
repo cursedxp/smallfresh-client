@@ -28,19 +28,11 @@ export default function Settings() {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .put(
-        `${process.env.REACT_APP_API_URL}/api/users`,
-        {
-          firstName: firstName,
-          lastName: lastName,
-          email: email,
-        },
-        {
-          params: {
-            userId: user?._id,
-          },
-        }
-      )
+      .put(`${process.env.REACT_APP_API_URL}/api/users/${user._id}`, {
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+      })
       .then((response) => {
         setErrorMessage("");
         console.log("User details updated successfully");
