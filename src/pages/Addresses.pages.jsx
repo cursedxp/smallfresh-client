@@ -99,7 +99,6 @@ export default function Addresses() {
                   <ul className="flex text-red-700 gap-2 underline cursor-pointer">
                     <li>Edit</li>
                     <li>Delete</li>
-                    <li>Set as default</li>
                   </ul>
                 </div>
               </div>
