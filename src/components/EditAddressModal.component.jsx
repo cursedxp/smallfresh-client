@@ -1,6 +1,10 @@
 import { XMarkIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
+import { useContext } from "react";
+import { ShopContext } from "../context/shop.context";
+
 export default function EditAddressModal(props) {
+  const { user } = useContext(ShopContext);
   const { address, updateAddress } = props;
   const [addressType, setAddressType] = useState(address.addressType);
   const [street, setStreet] = useState(address.street);
@@ -14,7 +18,6 @@ export default function EditAddressModal(props) {
 
   const handleUpdate = (e) => {
     e.preventDefault();
-    console.log(address?._id);
 
     const updatedAddress = {
       addressType: addressType,
@@ -26,7 +29,6 @@ export default function EditAddressModal(props) {
       latitude: latitude,
       isDefault: isDefault,
     };
-
     updateAddress(address?._id, updatedAddress);
     props.setShowEditForm(false);
   };

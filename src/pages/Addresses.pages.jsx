@@ -12,9 +12,9 @@ export default function Addresses() {
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
   const [zip, setZip] = useState("");
-  const [description, setDescription] = useState();
-  const [latitude, setLatitude] = useState();
-  const [longitude, setLongitude] = useState();
+  const [description, setDescription] = useState("");
+  const [latitude, setLatitude] = useState(Number);
+  const [longitude, setLongitude] = useState(Number);
   const [isDefault, setIsDefault] = useState(false);
 
   const [selectedAddress, setSelectedAddress] = useState(null);
@@ -33,10 +33,18 @@ export default function Addresses() {
       });
   };
 
-  const updateAddress = () => {};
-
-  const handleAddNew = () => {
-    setShowForm(true);
+  const updateAddress = (addressId, updatedAddress) => {
+    axios
+      .put(
+        `${process.env.REACT_APP_API_URL}/api/myaddresses/user/${user._id}/${addressId}`,
+        updatedAddress
+      )
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   const handleSubmit = (e) => {
@@ -59,10 +67,10 @@ export default function Addresses() {
       .catch((error) => {
         console.log(error);
       });
+    getAddresses();
   };
 
   const handleDelete = async (addressId) => {
-    console.log(user._id, addressId);
     try {
       const response = await axios.delete(
         `${process.env.REACT_APP_API_URL}/api/myaddresses/user/${user._id}/${addressId}`
@@ -86,7 +94,9 @@ export default function Addresses() {
         <h3 className="font-bold text-2xl text-left mt-4 mb-4 ">Addresses</h3>
         <button
           className="bg-red-700 hover:bg-red-800 text-white font-bold py-2 px-6 rounded-xl h-12 focus:outline-none focus:shadow-outline"
-          onClick={handleAddNew}
+          onClick={() => {
+            setShowForm(true);
+          }}
         >
           Add New
         </button>
