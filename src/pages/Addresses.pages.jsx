@@ -4,7 +4,7 @@ import { ShopContext } from "../context/shop.context";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 
 export default function Addresses() {
-  const { isLoggedIn, user, logOutUser } = useContext(ShopContext);
+  const { user } = useContext(ShopContext);
   const [addresses, setAddresses] = useState([]);
   const [addressType, setAddressType] = useState("Home");
   const [street, setStreet] = useState("");
@@ -20,9 +20,7 @@ export default function Addresses() {
 
   const getAddresses = () => {
     axios
-      .get(`${process.env.REACT_APP_API_URL}/api/myaddresses`, {
-        params: { userId: user?._id },
-      })
+      .get(`${process.env.REACT_APP_API_URL}/api/myaddresses/user/${user?._id}`)
       .then((response) => {
         setAddresses(response.data);
       })
@@ -30,12 +28,6 @@ export default function Addresses() {
         console.log(error);
       });
   };
-
-  //show new address model
-  //user fills the form
-  //handle form submit
-  //hide new address model
-  //if address is default set it on top with different stylling
 
   const handleAddNew = () => {
     setShowForm(true);
@@ -61,6 +53,19 @@ export default function Addresses() {
       .catch((error) => {
         console.log(error);
       });
+  };
+
+  const handleDelete = async (addressId) => {
+    console.log(user._id, addressId);
+    try {
+      const response = await axios.delete(
+        `${process.env.REACT_APP_API_URL}/api/myaddresses/user/${user._id}/${addressId}`
+      );
+      console.log(response.data);
+      getAddresses();
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   useEffect(() => {
@@ -98,7 +103,15 @@ export default function Addresses() {
                 <div className="my-4">
                   <ul className="flex text-red-700 gap-2 underline cursor-pointer">
                     <li>Edit</li>
-                    <li>Delete</li>
+                    <li>
+                      <button
+                        onClick={(e) => {
+                          handleDelete(address._id);
+                        }}
+                      >
+                        Delete
+                      </button>
+                    </li>
                   </ul>
                 </div>
               </div>
