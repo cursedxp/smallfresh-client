@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState, useEffect, useContext } from "react";
 import { ShopContext } from "../context/shop.context";
 import { XMarkIcon } from "@heroicons/react/24/solid";
+import EditAddressModal from "../components/EditAddressModal.component";
 
 export default function Addresses() {
   const { user } = useContext(ShopContext);
@@ -16,7 +17,10 @@ export default function Addresses() {
   const [longitude, setLongitude] = useState();
   const [isDefault, setIsDefault] = useState(false);
 
+  const [selectedAddress, setSelectedAddress] = useState(null);
+
   const [showForm, setShowForm] = useState(false);
+  const [showEditForm, setShowEditForm] = useState(false);
 
   const getAddresses = () => {
     axios
@@ -28,6 +32,8 @@ export default function Addresses() {
         console.log(error);
       });
   };
+
+  const updateAddress = () => {};
 
   const handleAddNew = () => {
     setShowForm(true);
@@ -69,7 +75,9 @@ export default function Addresses() {
   };
 
   useEffect(() => {
-    getAddresses();
+    if (user) {
+      getAddresses();
+    }
   }, []);
 
   return (
@@ -102,7 +110,16 @@ export default function Addresses() {
                 <div className="text-gray-400">{address.description}</div>
                 <div className="my-4">
                   <ul className="flex text-red-700 gap-2 underline cursor-pointer">
-                    <li>Edit</li>
+                    <li>
+                      <button
+                        onClick={() => {
+                          setSelectedAddress(address);
+                          setShowEditForm(true);
+                        }}
+                      >
+                        Edit
+                      </button>
+                    </li>
                     <li>
                       <button
                         onClick={(e) => {
@@ -114,6 +131,13 @@ export default function Addresses() {
                     </li>
                   </ul>
                 </div>
+                {showEditForm && (
+                  <EditAddressModal
+                    setShowEditForm={setShowEditForm}
+                    address={selectedAddress}
+                    updateAddress={updateAddress}
+                  />
+                )}
               </div>
             );
           })}
