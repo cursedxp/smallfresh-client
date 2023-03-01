@@ -11,12 +11,22 @@ export default function Admin() {
   const [showAddModal, setShowAddModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [totalProducts, setTotalProducts] = useState(0);
+  const [totalCategories, setTotalCategories] = useState(0);
+  const [totalBrands, setTotalBrands] = useState(0);
+  const [value, setValue] = useState(0);
 
   const getProducts = () => {
     axios
       .get(`${process.env.REACT_APP_API_URL}/api/products`)
       .then((products) => {
         setProducts(products.data);
+        setTotalProducts(products.data.length);
+      })
+      .then(() => {
+        numberOfCategories();
+        numberOfBrands();
+        totalValue();
       })
       .catch((err) => {
         console.log(err);
@@ -75,14 +85,66 @@ export default function Admin() {
     setShowEditModal(true);
   };
 
+  const numberOfCategories = () => {
+    const categories = new Set(products.map((product) => product.category));
+    setTotalCategories(categories.size);
+  };
+
+  const numberOfBrands = () => {
+    const brands = new Set(
+      products.map((product) => {
+        return product.brand;
+      })
+    );
+    setTotalBrands(brands.size);
+  };
+
+  const totalValue = () => {
+    const productValues = products?.map((product) => {
+      return product.stock.piece * product.stock.price;
+    });
+    const sum = productValues.reduce((acc, curr) => {
+      return acc + curr;
+    });
+    setValue(sum);
+  };
+
   useEffect(() => {
     if (user) {
       getProducts();
     }
-  }, [user]);
+  }, [user, products]);
 
   return (
     <div className=" wrapper mx-auto max-w-screen-2xl">
+      <div className="grid grid-cols-4 gap-4 my-8">
+        <div className="p-4 bg-white shadow-lg rounded-xl">
+          <div className="text-red-700 mb-4 text-left text-lg pb-2 border-b">
+            Total Products
+          </div>
+          <div className="text-4xl text-right">{totalProducts}</div>
+        </div>
+        <div className="p-4 bg-white shadow-lg rounded-xl">
+          <div className="text-red-700 mb-4 text-left text-lg pb-2 border-b">
+            Categories
+          </div>
+          <div className="text-4xl text-right">{totalCategories}</div>
+        </div>
+        <div className="p-4 bg-white shadow-lg rounded-xl">
+          <div className="text-red-700 mb-4 text-left text-lg pb-2 border-b">
+            Brands
+          </div>
+          <div className="text-4xl text-right">{totalBrands}</div>
+        </div>
+        <div className="p-4 bg-white shadow-lg rounded-xl">
+          <div className="text-red-700 mb-4 text-left text-lg pb-2 border-b">
+            Total Value
+          </div>
+          <div className="text-4xl text-right">
+            {value} <span> €</span>
+          </div>
+        </div>
+      </div>
       <div className="flex justify-between">
         <h3 className="font-bold text-2xl text-left mt-4 mb-4 ">Products</h3>
         <button
