@@ -1,6 +1,5 @@
 import NavBranding from "./Branding.component";
 import UserMenu from "./UserMenu.component";
-import Cart from "./Cart.component";
 import { HeartIcon, UserCircleIcon } from "@heroicons/react/24/solid";
 import { useContext } from "react";
 import { ShopContext } from "../context/shop.context";
@@ -39,7 +38,6 @@ export default function NavBar() {
             </div>
           </>
         )}
-        <Cart />
       </div>
     </nav>
   );
