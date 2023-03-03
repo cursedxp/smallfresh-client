@@ -4,7 +4,7 @@ Small Fresh is a front-end React application designed to help small businesses s
 
 ## Getting Started
 
-To get started with [Your Online Store Name], follow these steps:
+To get started with Small Fresh, follow these steps:
 
 1. Clone this repository: git clone https://github.com/[cursedxp]/[https://github.com/cursedxp/smallfresh-client].git
 2. Navigate to the project directory: cd [smallfresh-client]
