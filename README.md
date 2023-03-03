@@ -6,22 +6,23 @@ Small Fresh is a front-end React application designed to help small businesses s
 
 To get started with Small Fresh, follow these steps:
 
-1. Clone this repository: git clone https://github.com/cursedxp/https://github.com/cursedxp/smallfresh-server.git
-2. Navigate to the project directory: cd smallfresh-server
+1. Clone this repository: git clone https://github.com/cursedxp/https://github.com/cursedxp/smallfresh-client.git
+2. Navigate to the project directory: cd smallfresh-client
 3. Install dependencies: npm install
 4. Start the development server: npm start
-5. The server should be listening on http://localhost:5000
+5. Open http://localhost:3000 in your web browser.
 
 ## Features
 
-SmallFresh Backend includes the following features:
-
-A RESTful API for product listings, inventory management, and order processing.
-Secure user authentication and authorization with JWT token.
+- A user-friendly interface for grocery store owners to list products, manage inventory, and process orders.
+- Secure payment processing, automatic tax calculations, and customizable shipping options.
+- Highly customizable storefront design, product listings, and checkout options.
+- Mobile-friendly design, allowing customers to shop on-the-go.
+- Simple and affordable solution for small businesses to establish an online presence and reach new customers.
 
 ## Technologies Used
 
-- Node.js
-- Express.js
-- MongoDB
-- JWT (for user authentication)
+- React
+- React Router
+- Axios
+- Tailwind Css
