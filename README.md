@@ -2,6 +2,8 @@
 
 Small Fresh is a front-end React application designed to help small businesses sell their products online. Our platform provides a user-friendly interface that allows grocery store owners to easily list their products, manage their inventory, and process orders. With our solution, small businesses can expand their reach and customer base without worrying about the technicalities of setting up an online store.
 
+<img src='https://github.com/cursedxp/smallfresh-client/blob/main/Screenshot.png' style="width: 859px; height: 586px;">
+
 ## Getting Started
 
 To get started with Small Fresh, follow these steps:
